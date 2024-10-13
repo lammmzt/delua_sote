@@ -48,12 +48,10 @@ class Produk extends BaseController
             session()->setFlashdata('errors', 'Data gagal disimpan');
             return redirect()->to('/Produk')->withInput();
         } else {
-            $id_produk = Uuid::uuid4()->toString();
             $kode_produk = 'PRD-' . date('Ymd') . rand(1000, 9999);
 
             $data = [
-                'id_produk' => $id_produk,
-                'kode_produk' => $kode_produk,
+                'id_produk' => $kode_produk,
                 'nama_produk' => $this->request->getPost('nama_produk'),
             ];
 

@@ -48,7 +48,7 @@
                             <?php foreach ($produk as $key => $value) : ?>
                             <tr>
                                 <td><?= $no++; ?></td>
-                                <td><?= $value['kode_produk']; ?></td>
+                                <td><?= $value['id_produk']; ?></td>
                                 <td><?= $value['nama_produk']; ?></td>
                                 <td class="text-center">
                                     <a href="#" class="btn btn-sm rounded btn-xl" data-toggle="modal"

@@ -7,7 +7,7 @@ class produkModel extends Model
 {
     protected $table = 'produk';
     protected $primaryKey = 'id_produk';
-    protected $allowedFields = ['id_produk', 'nama_produk', 'kode_produk', 'nama_produk'];
+    protected $allowedFields = ['id_produk', 'nama_produk', 'nama_produk'];
     
     public function getProduk($id = false)
     {
