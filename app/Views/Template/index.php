@@ -287,9 +287,6 @@
     <script src="<?= base_url('Assets/'); ?>js/Chart.roundedBarCharts.js"></script>
     <!-- End custom js for this page-->
 
-    <script src="<?= base_url('Assets/'); ?>vendors/datatables.net/jquery.dataTables.js"></script>
-    <script src="<?= base_url('Assets/'); ?>vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-    <script src="<?= base_url('Assets/'); ?>js/dataTables.select.min.js"></script>
 
     <!-- Plugin js for this page -->
     <script src="<?= base_url('Assets/'); ?>vendors/typeahead.js/typeahead.bundle.min.js"></script>

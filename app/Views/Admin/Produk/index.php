@@ -87,7 +87,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nama Produk</th>
-                                <th>Jenis Produk</th>
+                                <th class="text-center">Stok</th>
                                 <th class="text-center" style="width: 50px;">Aksi</th>
                             </tr>
                         </thead>
@@ -96,8 +96,8 @@
                             <?php foreach ($jenis_produk as $key => $value) : ?>
                             <tr>
                                 <td><?= $no++; ?></td>
-                                <td><?= $value['nama_produk']; ?></td>
-                                <td><?= $value['nama_jenis_produk']; ?></td>
+                                <td><?= $value['nama_produk']; ?> (<?= $value['nama_jenis_produk']; ?>)</td>
+                                <td class="text-center"><?= $value['stok_produk']; ?></td>
                                 <td class="text-center">
                                     <a href="#" class="btn btn-sm rounded btn-xl" data-toggle="modal"
                                         data-target="#editDataProduk<?= $value['id_jenis_produk']; ?>">

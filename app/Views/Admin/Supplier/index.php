@@ -41,6 +41,7 @@
                                 <th>Nama Supplier</th>
                                 <th>Alamat</th>
                                 <th>No HP</th>
+                                <th>Ket</th>
                                 <th class="text-center" style="width: 50px;">Aksi</th>
                             </tr>
                         </thead>
@@ -52,6 +53,9 @@
                                 <td><?= $value['nama_supplier']; ?></td>
                                 <td><?= $value['alamat_supplier']; ?></td>
                                 <td><?= $value['no_hp_supplier']; ?></td>
+                                <th>
+                                    <?= $value['ket_supplier']; ?>
+                                </th>
                                 <td class="text-center">
                                     <a href="#" class="btn btn-sm rounded btn-xl" data-toggle="modal"
                                         data-target="#editsupplierModal<?= $value['id_supplier']; ?>">
@@ -127,6 +131,16 @@
                             <?= $validation->getError('no_hp_supplier'); ?>
                         </div>
                     </div>
+                    <div class="form-group ">
+                        <label for="ket_supplier">Keterangan Supplier</label>
+                        <input type="text"
+                            class="form-control <?= ($validation->hasError('ket_supplier')) ? 'is-invalid' : ''; ?> "
+                            id="ket_supplier" placeholder="Masukan keterangan supplier" name="ket_supplier"
+                            value="<?= old('ket_supplier'); ?>">
+                        <div class="invalid-feedback">
+                            <?= $validation->getError('ket_supplier'); ?>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -194,7 +208,16 @@
                             <?= $validation->getError('edit_no_hp_supplier'); ?>
                         </div>
                     </div>
-
+                    <div class="form-group ">
+                        <label for="edit_ket_supplier" class="">Ket supplier</label>
+                        <input type="text"
+                            class="form-control <?= ($validation->hasError('edit_ket_supplier')) ? 'is-invalid' : ''; ?> "
+                            placeholder="Masukan Ket supplier" name="edit_ket_supplier"
+                            value="<?= $value['ket_supplier']; ?>">
+                        <div class="invalid-feedback">
+                            <?= $validation->getError('edit_ket_supplier'); ?>
+                        </div>
+                    </div>
 
                 </div>
 

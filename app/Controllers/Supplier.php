@@ -61,6 +61,13 @@ class Supplier extends BaseController
                     'required' => '{field} tidak boleh kosong',
                 ],
             ],
+            'ket_supplier' => [
+                'label' => 'Keterangan Supplier',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} tidak boleh kosong',
+                ],
+            ],
             'id_user' => [
                 'label' => 'User',
                 'rules' => 'required',
@@ -80,6 +87,7 @@ class Supplier extends BaseController
             'id_user' => $this->request->getPost('id_user'),
             'nama_supplier' => $this->request->getPost('nama_supplier'),
             'alamat_supplier' => $this->request->getPost('alamat_supplier'),
+            'ket_supplier' => $this->request->getPost('ket_supplier'),
             'no_hp_supplier' => $this->request->getPost('no_hp_supplier'),
         ]);
 
@@ -119,6 +127,13 @@ class Supplier extends BaseController
                     'required' => '{field} tidak boleh kosong',
                 ],
             ],
+            'edit_ket_supplier' => [
+                'label' => 'Keterangan Supplier',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} tidak boleh kosong',
+                ],
+            ],
         ]);
 
         if (!$validation->withRequest($this->request)->run()) {
@@ -134,13 +149,16 @@ class Supplier extends BaseController
                 return redirect()->to('/Supplier');
             }
         }else{
-            $this->supplierModel->save([
+            $data = [
             'id_supplier' => $id,
             'id_user' => $id_user,
             'nama_supplier' => $this->request->getPost('edit_nama_supplier'),
             'alamat_supplier' => $this->request->getPost('edit_alamat_supplier'),
             'no_hp_supplier' => $this->request->getPost('edit_no_hp_supplier'),
-        ]);
+            'ket_supplier' => $this->request->getPost('edit_ket_supplier'),
+        ];
+        
+        $this->supplierModel->save($data);
 
         session()->setFlashdata('success', 'Data berhasil diupdate');
         return redirect()->to('/Supplier');
