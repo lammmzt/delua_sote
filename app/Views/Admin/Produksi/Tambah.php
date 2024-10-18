@@ -27,7 +27,7 @@
                 <div class="card-body">
                     <div class="card-title">
                         <div class="d-flex justify-content-between">
-                            <h4>Form Permintaan Produksi</h4>
+                            <h4>Form Tambah Permintaan Produksi</h4>
 
                         </div>
                     </div>
@@ -56,9 +56,41 @@
                             </div>
                         </div>
                     </div>
-                    <!-- button add jenis produk -->
+
                     <div class="row">
-                        <div class="col-md-11">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="id_bahan">Bahan</label>
+                                <select class="form-control w-100 js-example-basic-single" name="id_bahan" id="id_bahan"
+                                    required>
+                                    <option value="">-- Pilih Bahan --</option>
+                                    <?php foreach ($bahan as $key => $value) : ?>
+                                    <option value="<?= $value['id_bahan']; ?>"><?= $value['nama_bahan']; ?>
+                                        (<?= $value['stok_bahan']; ?>m<sup>3</sup>)</option>
+                                    </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="panjang" class="">panjang</label>
+                                <input type="number" class="form-control" id="panjang" name="panjang" required
+                                    placeholder="panjang" value="<?= (old('panjang')) ? old('panjang') :'' ?>">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="harga_bahan" class="">Harga Bahan</label>
+                                <input type="number" class="form-control" id="harga_bahan" name="harga_bahan" required
+                                    placeholder="harga_bahan"
+                                    value="<?= (old('harga_bahan')) ? old('harga_bahan') :'' ?>">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="ket_produksi" class="">Jenis Produk</label>
                                 <select class="form-control w-100" name="id_jenis_produk" id="id_jenis_produk" required>
@@ -152,8 +184,10 @@ $('#id_jenis_produk').select2({
     allowClear: true
 });
 
+// data jenis produk
 var data_jenis_produk = [];
 
+// render data jenis produk
 function renderData() {
     var html = '';
     if (data_jenis_produk.length == 0) {
@@ -180,6 +214,7 @@ function renderData() {
     $('#data_jenis_produk tbody').html(html);
 }
 
+// jika menambahkan data
 function addData() {
     var id_jenis_produk = $('#id_jenis_produk').val();
     var nama_jenis_produk = $('#id_jenis_produk option:selected').text();
@@ -198,29 +233,39 @@ function addData() {
             jumlah_produk: 1
         });
     } else {
-        data_jenis_produk[index].jumlah_produk += 1;
+        data_jenis_produk[index].jumlah_produk++;
     }
 
     renderData();
 }
 
+// jiaka mengubah jumlah produk
+$('#data_jenis_produk').on('change', 'input[name="jumlah_produk[]"]', function() {
+    var index = $(this).closest('tr').index();
+    data_jenis_produk[index].jumlah_produk = $(this).val();
+});
+
+// jika menghapus data
 function deleteData(index) {
     data_jenis_produk.splice(index, 1);
     renderData();
 }
 
+// jika menekan tombol simpan
 $('#add_jenis_produk').click(function() {
     addData();
 });
 
+// jika menekan tombol simpan
 $('#form_produksi').submit(function(e) {
     e.preventDefault();
-
+    // validasi
     if (data_jenis_produk.length == 0) {
         alert('Data jenis produk tidak boleh kosong');
         return false;
     }
-    var data = $(this).serializeArray();
+    var data = $(this).serializeArray(); // mengambil semua data form
+    // tambahkan data jenis produk
     data.push({
         name: 'data_jenis_produk',
         value: JSON.stringify(data_jenis_produk)
@@ -228,20 +273,22 @@ $('#form_produksi').submit(function(e) {
 
     console.log(data);
 
+    // simpan data
     $.ajax({
         url: '<?= base_url('Produksi/SimpanPermintaan'); ?>',
         type: 'POST',
         data: data,
         success: function(response) {
-            var data = JSON.parse(response);
-            if (data.status == '200') {
+            if (response.status == '200') {
+                // alert(response.message);
                 window.location.href = '<?= base_url('Produksi/Permintaan'); ?>';
             } else {
-                alert(data.message);
+                alert(response.message);
             }
         }
     });
 });
+// render data
 renderData();
 </script>
 

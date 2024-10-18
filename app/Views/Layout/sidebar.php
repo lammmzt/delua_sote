@@ -7,17 +7,17 @@
             </a>
         </li>
         <li
-            class="nav-item <?= ($main_menu_active == 'data_produk' || $main_menu_active == 'data_bahan') ? 'active' : ''; ?>">
+            class="nav-item <?= ($main_menu_active === 'data_produk' || $main_menu_active == 'data_bahan') ? 'active' : ''; ?>">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <i class="icon-layout menu-icon"></i>
                 <span class="menu-title">Master Data</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse <?= ($main_menu_active == 'data_produk' || $main_menu_active == 'data_bahan' || $main_menu_active == 'supplier') ? 'show' : ''; ?>"
+            <div class="collapse <?= ($main_menu_active === 'data_produk' || $main_menu_active == 'data_bahan' || $main_menu_active == 'supplier') ? 'show' : ''; ?>"
                 id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a
-                            class="nav-link <?= ($main_menu_active == 'data_produk') ? 'active' : ''; ?>"
+                            class="nav-link <?= ($main_menu_active === 'data_produk') ? 'active' : ''; ?>"
                             href="<?= base_url('Produk'); ?>">Data Produk</a></li>
                     <li class="nav-item"> <a
                             class="nav-link <?= ($main_menu_active == 'data_bahan') ? 'active' : ''; ?>"
@@ -53,17 +53,17 @@
                 </ul>
             </div>
         </li>
-        <li class="nav-item <?= ($main_menu_active == 'Produksi') ? 'active' : ''; ?>">
+        <li class="nav-item <?= ($main_menu_active === 'Permintaan') ? 'active' : ''; ?>">
             <a class="nav-link" data-toggle="collapse" href="#menu_produksi" aria-expanded="false"
                 aria-controls="menu_produksi">
                 <i class="icon-check menu-icon"></i>
                 <span class="menu-title">Produksi</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse <?= ($main_menu_active == 'Permintaan') ? 'show' : ''; ?>" id="menu_produksi">
+            <div class="collapse <?= ($main_menu_active === 'Permintaan') ? 'show' : ''; ?>" id="menu_produksi">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link <?= ($main_menu_active == 'Permintaan') ? 'active' : ''; ?>"
+                        <a class="nav-link <?= ($main_menu_active === 'Permintaan') ? 'active' : ''; ?>"
                             href="<?= base_url('Produksi/Permintaan'); ?>">Permintaan</a>
                     </li>
 
